@@ -1,3 +1,5 @@
+[![Download](https://api.bintray.com/packages/cangol/maven/fir-gradle-plugin/images/download.svg) ](https://bintray.com/cangol/maven/fir-gradle-plugin/_latestVersion)
+
 Usage
 -----------
         buildscript {

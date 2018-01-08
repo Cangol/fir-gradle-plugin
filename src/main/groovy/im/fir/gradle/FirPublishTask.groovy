@@ -3,9 +3,7 @@ package im.fir.gradle
 import com.android.build.gradle.api.ApplicationVariant
 import im.fir.gradle.http.FirClient
 import im.fir.gradle.module.App
-import im.fir.gradle.module.Mapping
 import org.gradle.api.DefaultTask
-import org.gradle.api.tasks.TaskAction
 
 class FirPublishTask extends DefaultTask{
     FirPublisherPluginExtension firExtension

@@ -1,5 +1,5 @@
 [![Download](https://api.bintray.com/packages/cangol/maven/fir-gradle-plugin/images/download.svg) ](https://bintray.com/cangol/maven/fir-gradle-plugin/_latestVersion)
-
+[![Build Status](https://travis-ci.org/Cangol/fir-gradle-plugin.svg?branch=master)](https://travis-ci.org/Cangol/fir-gradle-plugin)
 Usage
 -----------
         buildscript {

@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'im.fir.plugin.gradle'
+//
+//fir{
+//    apiToken '替换为你的 fir.im API_TOKEN'   //必填 上传 fir.im apk 字段，否则无法上传 APP 到 fir.im
+//
+//    changeLog '替换为你的更新日志'////可选 上传fir.im 中显示的changelog
+//}
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "mobi.cangol.mobile.utils"
+        multiDexEnabled false
+        minSdkVersion 14
+        versionCode 2
+        versionName "1.0.0"
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+configurations {
+    providedCompile
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    providedCompile project(':plugin')
+}

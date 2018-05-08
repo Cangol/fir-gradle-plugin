@@ -8,6 +8,7 @@ Usage
 3. app模块build文件中增加   
         
         apply plugin: 'im.fir.plugin.gradle'
+        
         fir{
             apiToken 'c5cddea79fbc9176a98e216c6f154022'
             changeLog '更新日志'

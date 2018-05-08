@@ -9,7 +9,7 @@ Usage
                 jcenter()
             }
             dependencies {
-                classpath 'com.android.tools.build:gradle:2.3.3'
+                classpath 'com.android.tools.build:gradle:3.0.1'
                 classpath 'mobi.cangol.mobile:fir-gradle-plugin:1.2.0'
             }
         }

@@ -29,5 +29,4 @@ configurations {
 
 dependencies {
     testImplementation 'junit:junit:4.12'
-    providedCompile project(':plugin')
 }

@@ -23,9 +23,6 @@ android {
         abortOnError false
     }
 }
-configurations {
-    providedCompile
-}
 
 dependencies {
     testImplementation 'junit:junit:4.12'

@@ -2,9 +2,8 @@ apply plugin: 'com.android.application'
 //apply plugin: 'im.fir.plugin.gradle'
 //
 //fir{
-//    apiToken '替换为你的 fir.im API_TOKEN'   //必填 上传 fir.im apk 字段，否则无法上传 APP 到 fir.im
-//
-//    changeLog '替换为你的更新日志'////可选 上传fir.im 中显示的changelog
+//    apiToken 'c5cddea79fbc9176a98e216c6f154022'
+//    changeLog '更新日志'
 //}
 android {
     compileSdkVersion 26

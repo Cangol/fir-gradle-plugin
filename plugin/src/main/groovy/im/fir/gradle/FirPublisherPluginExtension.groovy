@@ -6,8 +6,8 @@ class FirPublisherPluginExtension {
 
     String pwd
 
-    String apiToken;
+    String apiToken
 
-    String changeLog;
+    String changeLog
 
 }

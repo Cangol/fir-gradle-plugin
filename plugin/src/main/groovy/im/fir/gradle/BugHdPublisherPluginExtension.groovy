@@ -5,5 +5,5 @@ class BugHdPublisherPluginExtension {
     String projectId
 
     String apiToken
-    
+
 }

@@ -2,7 +2,7 @@ package im.fir.gradle.module;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class App {
     private String appPath;
     private String iconPath;

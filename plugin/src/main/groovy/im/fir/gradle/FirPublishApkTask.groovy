@@ -1,4 +1,5 @@
 package im.fir.gradle
+
 import com.android.build.gradle.api.ApkVariantOutput
 import com.android.builder.model.ProductFlavor
 import im.fir.gradle.module.App
@@ -15,38 +16,39 @@ class FirPublishApkTask extends FirPublishTask {
     @TaskAction
     publishApk() {
         super.publish()
-        String changeLog;
-        def log = project.logger;
+        String changeLog
+        def log = project.logger
 
         def apkOutput = variant.outputs.find { variantOutput -> variantOutput instanceof ApkVariantOutput }
 
         String apkPath = apkOutput.outputFile.getAbsolutePath()
         log.warn("apkPath ===> " + apkPath)
-        Iterator<ProductFlavor> iterator = variant.productFlavors.iterator();
-        while ( iterator.hasNext()){
-          ProductFlavor flavor =  iterator.next();
-            log.warn("flavor ===> " + flavor.getName());
-            Map<String, Object> map = flavor.getManifestPlaceholders();
-            if (map.containsKey("FIR_CHANGE_LOG_VALUE")){
-                changeLog = map.get("FIR_CHANGE_LOG_VALUE");
+        Iterator<ProductFlavor> iterator = variant.productFlavors.iterator()
+        while (iterator.hasNext()) {
+            ProductFlavor flavor = iterator.next()
+            log.warn("flavor ===> " + flavor.getName())
+            Map<String, Object> map = flavor.getManifestPlaceholders()
+            if (map.containsKey("FIR_CHANGE_LOG_VALUE")) {
+                changeLog = map.get("FIR_CHANGE_LOG_VALUE")
 
-        }}
-        parseApk(apkPath,app);
-        app.setAppPath(apkPath)
-        if (changeLog){
-            app.setChangeLog(changeLog);
-        } else if(firExtension.changeLog != null){
-            app.setChangeLog(firExtension.changeLog);
+            }
         }
-        Mapping mapping =null;
+        parseApk(apkPath, app)
+        app.setAppPath(apkPath)
+        if (changeLog) {
+            app.setChangeLog(changeLog)
+        } else if (firExtension.changeLog != null) {
+            app.setChangeLog(firExtension.changeLog)
+        }
+        Mapping mapping = null
         if (variant.mappingFile != null && bugHdExtension != null) {
-            String mappingPath = variant.mappingFile.getAbsolutePath();
-            mapping = new Mapping();
-            mapping.setFilePath(mappingPath);
+            String mappingPath = variant.mappingFile.getAbsolutePath()
+            mapping = new Mapping()
+            mapping.setFilePath(mappingPath)
             mapping.setApiToken(bugHdExtension.apiToken)
             mapping.setProjectId(bugHdExtension.projectId)
         }
-        client.deployFile(app, mapping, firExtension.apiToken);
+        client.deployFile(app, mapping, firExtension.apiToken)
 
 //        FileContent newApkFile = new FileContent(AndroidPublisherHelper.MIME_TYPE_APK, apkOutput.outputFile)
 
@@ -90,40 +92,40 @@ class FirPublishApkTask extends FirPublishTask {
     }
 
     static App parseApk(String apkPath, App app) {
-        ApkParser apkParser = null;
+        ApkParser apkParser = null
         try {
-//            String path = appPath.getAbsolutePath();
-            File apkFile = new File(apkPath);
-            apkParser = new ApkParser(apkFile);
-            Icon icon = apkParser.getIconFile();
-            String iconPath = icon.getPath();
-            app.setName(apkParser.apkMeta.name);
-            String[] strs;
+//            String path = appPath.getAbsolutePath()
+            File apkFile = new File(apkPath)
+            apkParser = new ApkParser(apkFile)
+            Icon icon = apkParser.getIconFile()
+            String iconPath = icon.getPath()
+            app.setName(apkParser.apkMeta.name)
+            String[] strs
             if (iconPath != null) {
-                strs = iconPath.split("/");
-                createFile(icon.getData(), apkFile.getParent(), strs[(strs.length - 1)], app);
+                strs = iconPath.split("/")
+                createFile(icon.getData(), apkFile.getParent(), strs[(strs.length - 1)], app)
             }
-            return app;
+            return app
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace()
         } finally {
             try {
-                apkParser.close();
+                apkParser.close()
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace()
             }
         }
-        return null;
+        return null
     }
 
     static void createFile(byte[] bytes, String path, String name, App app) {
         try {
-            FileOutputStream fos = new FileOutputStream(path + "/" + name);
-            fos.write(bytes);
-            app.setIconPath(path + "/" + name);
-            fos.close();
+            FileOutputStream fos = new FileOutputStream(path + "/" + name)
+            fos.write(bytes)
+            app.setIconPath(path + "/" + name)
+            fos.close()
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace()
         }
     }
 }

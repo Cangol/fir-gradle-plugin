@@ -10,7 +10,7 @@ Usage
             }
             dependencies {
                 classpath 'com.android.tools.build:gradle:3.0.1'
-                classpath 'mobi.cangol.mobile:fir-gradle-plugin:2.0.0'
+                classpath 'mobi.cangol.mobile:fir-gradle-plugin:2.0.1'
             }
         }
 

@@ -3,7 +3,7 @@ Usage
 1. 执行 gradle clean install //安装插件到本地maven仓库
 2. 项目build文件中增加 
             
-        classpath 'mobi.cangol.mobile:fir-gradle-plugin:2.0.0'
+        classpath 'mobi.cangol.mobile:fir-gradle-plugin:2.0.1'
     
 3. app模块build文件中增加   
         

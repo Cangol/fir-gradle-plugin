@@ -38,7 +38,7 @@ class FirPublisherPlugin implements Plugin<Project> {
 
 //                def bootstrapTaskName = "bootstrap${variationName}PlayResources"
 //                def playResourcesTaskName = "generate${variationName}PlayResources"
-            def publishApkTaskName = "publishApk${variationName}"
+            def publishApkTaskName = "publishFirApk${variationName}"
             def outputData = variant.outputs.first()
             def assembleTask = variant.assemble
 

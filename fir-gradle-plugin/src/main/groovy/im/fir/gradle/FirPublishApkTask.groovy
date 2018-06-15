@@ -22,11 +22,11 @@ class FirPublishApkTask extends FirPublishTask {
         def apkOutput = variant.outputs.find { variantOutput -> variantOutput instanceof ApkVariantOutput }
 
         String apkPath = apkOutput.outputFile.getAbsolutePath()
-        log.warn("apkPath ===> " + apkPath)
+        log.info("apkPath ===> " + apkPath)
         Iterator<ProductFlavor> iterator = variant.productFlavors.iterator()
         while (iterator.hasNext()) {
             ProductFlavor flavor = iterator.next()
-            log.warn("flavor ===> " + flavor.getName())
+            log.info("flavor ===> " + flavor.getName())
             Map<String, Object> map = flavor.getManifestPlaceholders()
             if (map.containsKey("FIR_CHANGE_LOG_VALUE")) {
                 changeLog = map.get("FIR_CHANGE_LOG_VALUE")
@@ -48,8 +48,8 @@ class FirPublishApkTask extends FirPublishTask {
             mapping.setApiToken(bugHdExtension.apiToken)
             mapping.setProjectId(bugHdExtension.projectId)
         }
-        client.deployFile(app, mapping, firExtension.apiToken)
-
+        def shortUrl = client.deployFile(app, mapping, firExtension.apiToken)
+        log.warn("Uploading ${apkPath} to fir.im finish!\nLink: $shortUrl")
 //        FileContent newApkFile = new FileContent(AndroidPublisherHelper.MIME_TYPE_APK, apkOutput.outputFile)
 
 //        Apk apk = edits.apks()

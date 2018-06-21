@@ -47,12 +47,12 @@ class FirPublisherPlugin implements Plugin<Project> {
             //log.warn("variantData.zipAlignEnabled === >" + variantData.zipAlignEnabled);
             //if (variantData.zipAlignEnabled) {
             // Create and configure publisher apk task for this variant.
-            log.warn("publishApkTaskName === " + publishApkTaskName)
+            log.info("publishApkTaskName === " + publishApkTaskName)
 
             def publishApkTask = project.tasks.create(publishApkTaskName, FirPublishApkTask)
             publishApkTask.firExtension = firExtension
             if (bugHdExtension.apiToken != null && bugHdExtension.projectId != null) {
-                log.warn("bugHdExtension === bugHdExtension not null")
+                log.info("bugHdExtension === bugHdExtension not null")
                 publishApkTask.bugHdExtension = bugHdExtension
             }
             publishApkTask.variant = variant

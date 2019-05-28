@@ -24,7 +24,11 @@ Usage
                 
                 
          './gradlew publishFirApkDebug
-   
+
+Contributing
+-----------
+[@ipcjs](https://github.com/ipcjs)
+
 License
 -----------
 

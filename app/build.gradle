@@ -6,8 +6,8 @@ apply plugin: 'com.android.application'
 //    changeLog '更新日志'
 //}
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "mobi.cangol.mobile.utils"
         multiDexEnabled false

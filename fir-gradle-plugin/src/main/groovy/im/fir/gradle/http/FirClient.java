@@ -34,7 +34,7 @@ public class FirClient {
     private static final String FIR_GRADLE_PLUGIN_VERSION = "1.0.7";
     // public static final String API_FIR = "http://api.fir.com";
     // public static final String URL_SHORT = "https://fir.im";
-    public static final String API_FIR = "http://api.dq04.com";
+    public static final String API_FIR = "http://api.bq04.com";
     public static final String API_BUGHD = "http://api.bughd.com";
     public static final String URL_SHORT = "https://d.6short.com";
 

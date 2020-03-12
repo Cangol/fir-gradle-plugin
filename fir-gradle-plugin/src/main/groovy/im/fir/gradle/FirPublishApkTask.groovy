@@ -2,6 +2,7 @@ package im.fir.gradle
 
 import com.android.build.gradle.api.ApkVariantOutput
 import com.android.builder.model.ProductFlavor
+import im.fir.gradle.http.FirClient
 import im.fir.gradle.module.App
 import im.fir.gradle.module.Mapping
 import net.dongliu.apk.parser.ApkParser
@@ -49,7 +50,7 @@ class FirPublishApkTask extends FirPublishTask {
             mapping.setProjectId(bugHdExtension.projectId)
         }
         def shortUrl = client.deployFile(app, mapping, firExtension.apiToken)
-        log.warn("Uploading ${apkPath} to fir.im finish!\nShort URL: https://fir.im/$shortUrl")
+        log.warn("Uploading ${apkPath} to fir.im finish!\nShort URL: $FirClient.URL_SHORT/$shortUrl")
 //        FileContent newApkFile = new FileContent(AndroidPublisherHelper.MIME_TYPE_APK, apkOutput.outputFile)
 
 //        Apk apk = edits.apks()

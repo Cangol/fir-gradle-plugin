@@ -29,15 +29,19 @@ import im.fir.gradle.module.Mapping;
 import im.fir.gradle.module.UploadInfo;
 import im.fir.gradle.module.User;
 
-
 public class FirClient {
     private static final Log log = LogFactory.getLog(FirClient.class);
     private static final String FIR_GRADLE_PLUGIN_VERSION = "1.0.7";
+    // public static final String API_FIR = "http://api.fir.com";
+    // public static final String URL_SHORT = "https://fir.im";
+    public static final String API_FIR = "http://api.dq04.com";
+    public static final String API_BUGHD = "http://api.bughd.com";
+    public static final String URL_SHORT = "https://d.6short.com";
 
-    private static final String GET_USER_INFO = "http://api.fir.im/user";
-    private static final String UPLOAD_MAPPING = "http://api.bughd.com/full_versions";
-    private static final String CREATE_VERSION = "http://api.bughd.com/projects";
-    private static final String GET_UPLOAD_INFO = "http://api.fir.im/apps";
+    private static final String GET_USER_INFO = API_FIR + "/user";
+    private static final String UPLOAD_MAPPING = API_BUGHD + "/full_versions";
+    private static final String CREATE_VERSION = API_BUGHD + "/projects";
+    private static final String GET_UPLOAD_INFO = API_FIR + "/apps";
     private String mAppPath;
     private HttpClient httpClient;
 
@@ -47,7 +51,7 @@ public class FirClient {
 //	}
 
     public UploadInfo getUploadInfo(String type, String bundleId, String token) throws FirDeployException {
-        HttpPost httpPost = new HttpPost("http://api.fir.im/apps");
+        HttpPost httpPost = new HttpPost(GET_UPLOAD_INFO);
         try {
             httpPost.setHeader("source", "fir-gradle-plugin");
             httpPost.setHeader("version", FIR_GRADLE_PLUGIN_VERSION);
@@ -97,7 +101,7 @@ public class FirClient {
 
     public User doCheckToken(String token) throws IOException {
         resetHttpConnection();
-        HttpGet httpGet = new HttpGet("http://api.fir.im/user?token=" + token);
+        HttpGet httpGet = new HttpGet(GET_USER_INFO + "?token=" + token);
         httpGet.setHeader("source", "fir-gradle-plugin");
         httpGet.setHeader("version", FIR_GRADLE_PLUGIN_VERSION);
         HttpResponse response = this.httpClient.execute(httpGet);
@@ -303,8 +307,7 @@ public class FirClient {
         System.out.println("build===" + app.getBuild());
         System.out.println("token===" + mapping.getApiToken());
 
-
-        String url = "http://api.bughd.com/projects/" + mapping.getProjectId() + "/full_versions";
+        String url = CREATE_VERSION + "/" + mapping.getProjectId() + "/full_versions";
         System.out.println(url);
         HttpPost httpPost = new HttpPost(url);
         httpPost.setHeader("source", "fir-gradle-plugin");
@@ -342,6 +345,5 @@ public class FirClient {
         httpPost.setEntity(entity);
         return httpPost;
     }
-
 
 }

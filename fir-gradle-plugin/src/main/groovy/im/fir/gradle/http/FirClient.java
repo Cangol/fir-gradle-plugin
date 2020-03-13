@@ -25,6 +25,7 @@ import im.fir.gradle.module.App;
 import im.fir.gradle.module.Binary;
 import im.fir.gradle.module.Cert;
 import im.fir.gradle.module.Icon;
+import im.fir.gradle.module.LatestAppInfo;
 import im.fir.gradle.module.Mapping;
 import im.fir.gradle.module.UploadInfo;
 import im.fir.gradle.module.User;
@@ -36,12 +37,13 @@ public class FirClient {
     // public static final String URL_SHORT = "https://fir.im";
     public static final String API_FIR = "http://api.bq04.com";
     public static final String API_BUGHD = "http://api.bughd.com";
-    public static final String URL_SHORT = "https://d.6short.com";
+    // public static final String URL_SHORT = "https://d.6short.com";
 
     private static final String GET_USER_INFO = API_FIR + "/user";
     private static final String UPLOAD_MAPPING = API_BUGHD + "/full_versions";
     private static final String CREATE_VERSION = API_BUGHD + "/projects";
     private static final String GET_UPLOAD_INFO = API_FIR + "/apps";
+    private static final String GET_LATEST_APP_INFO = API_FIR + "/apps/latest";
     private String mAppPath;
     private HttpClient httpClient;
 
@@ -79,6 +81,23 @@ public class FirClient {
         } finally {
             resetHttpConnection();
         }
+    }
+
+    public LatestAppInfo getLatestAppInfo(String type, String bundleId, String token) throws IOException {
+        HttpGet http = new HttpGet(GET_LATEST_APP_INFO + "/" + bundleId + "?api_token=" + token + "&type=" + type);
+        http.setHeader("source", "fir-gradle-plugin");
+        http.setHeader("version", FIR_GRADLE_PLUGIN_VERSION);
+        HttpResponse response = this.httpClient.execute(http);
+        int statusCode = response.getStatusLine().getStatusCode();
+        LatestAppInfo latestAppInfo = null;
+        if (statusCode == 200) {
+            String json = IOUtils.toString(response.getEntity().getContent());
+            latestAppInfo = LatestAppInfo.createFromJson(json);
+        }
+        if (latestAppInfo == null) {
+            throw new IOException("Failed to get latest app info.");
+        }
+        return latestAppInfo;
     }
 
     protected void addParam(MultipartEntity entity, String paramName, String paramValue)

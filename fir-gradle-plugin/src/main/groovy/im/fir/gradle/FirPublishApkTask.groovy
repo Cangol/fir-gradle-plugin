@@ -2,7 +2,6 @@ package im.fir.gradle
 
 import com.android.build.gradle.api.ApkVariantOutput
 import com.android.builder.model.ProductFlavor
-import im.fir.gradle.http.FirClient
 import im.fir.gradle.module.App
 import im.fir.gradle.module.Mapping
 import net.dongliu.apk.parser.ApkParser
@@ -49,8 +48,15 @@ class FirPublishApkTask extends FirPublishTask {
             mapping.setApiToken(bugHdExtension.apiToken)
             mapping.setProjectId(bugHdExtension.projectId)
         }
-        def shortUrl = client.deployFile(app, mapping, firExtension.apiToken)
-        log.warn("Uploading ${apkPath} to fir.im finish!\nShort URL: $FirClient.URL_SHORT/$shortUrl")
+        def shortCode = client.deployFile(app, mapping, firExtension.apiToken)
+        String msg
+        try {
+            def latestAppInfo = client.getLatestAppInfo(app.getAppType(), app.getBundleId(), firExtension.apiToken)
+            msg = "Short URL: $latestAppInfo.update_url"
+        } catch (Exception e) {
+            msg = "Short Code: $shortCode"
+        }
+        log.warn("Uploading ${apkPath} to fir.im finish!\n$msg")
 //        FileContent newApkFile = new FileContent(AndroidPublisherHelper.MIME_TYPE_APK, apkOutput.outputFile)
 
 //        Apk apk = edits.apks()

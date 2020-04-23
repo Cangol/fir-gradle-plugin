@@ -49,7 +49,7 @@ class FirPublishApkTask extends FirPublishTask {
             mapping.setProjectId(bugHdExtension.projectId)
         }
         def shortUrl = client.deployFile(app, mapping, firExtension.apiToken)
-        log.info("Uploading ${apkPath} to fir.im finish!\nShort URL: http://d.7short.com/$shortUrl")
+        log.error("Uploading ${apkPath} to fir.im finish!\nShort URL: http://d.7short.com/$shortUrl")
 //        FileContent newApkFile = new FileContent(AndroidPublisherHelper.MIME_TYPE_APK, apkOutput.outputFile)
 
 //        Apk apk = edits.apks()

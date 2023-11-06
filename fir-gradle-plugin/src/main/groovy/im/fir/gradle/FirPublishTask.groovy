@@ -6,11 +6,11 @@ import im.fir.gradle.module.App
 import org.gradle.api.DefaultTask
 
 class FirPublishTask extends DefaultTask {
-    FirPublisherPluginExtension firExtension
-    BugHdPublisherPluginExtension bugHdExtension
-    FirClient client
-    ApplicationVariant variant
-    App app
+    protected FirPublisherPluginExtension firExtension
+    protected BugHdPublisherPluginExtension bugHdExtension
+    protected FirClient client
+    protected ApplicationVariant variant
+    protected App app
 
     def publish() {
         if (client == null) {

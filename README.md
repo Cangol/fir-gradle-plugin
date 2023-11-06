@@ -6,17 +6,17 @@ Usage
 -----------
         buildscript {
             repositories {
-                jcenter()
+                mavenCentral()
             }
             dependencies {
-                classpath 'com.android.tools.build:gradle:3.0.1'
-                classpath 'mobi.cangol.mobile:fir-gradle-plugin:2.0.2'
+                classpath 'com.android.tools.build:gradle:7.3.0'
+                classpath 'mobi.cangol.mobile:fir-gradle-plugin:2.2.0'
             }
         }
 
         apply plugin: 'im.fir.plugin.gradle'
         
-        fir{
+        fir {
             apiToken '替换为你的 fir.im API_TOKEN'   //必填 上传 fir.im apk 字段，否则无法上传 APP 到 fir.im
  
             changeLog '替换为你的更新日志'////可选 上传fir.im 中显示的changelog
@@ -24,7 +24,11 @@ Usage
                 
                 
          './gradlew publishFirApkDebug
-   
+
+Contributing
+-----------
+[@ipcjs](https://github.com/ipcjs)
+
 License
 -----------
 

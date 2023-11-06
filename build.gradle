@@ -8,7 +8,7 @@ buildscript {
     ext.android_gradle = '7.3.1'
     dependencies {
         classpath "com.android.tools.build:gradle:$android_gradle"
-        classpath "mobi.cangol.mobile:fir-gradle-plugin:$POM_VERSION"
+        //classpath "mobi.cangol.mobile:fir-gradle-plugin:$POM_VERSION"
     }
 }
 allprojects {

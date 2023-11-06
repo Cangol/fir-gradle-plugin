@@ -34,9 +34,12 @@ public class FirClient {
     private static final Log log = LogFactory.getLog(FirClient.class);
     private static final String FIR_GRADLE_PLUGIN_VERSION = "1.0.7";
     private static final String API_SERVER = "http://api.bq04.com";
+    /** @deprecated BugHD已停止服务, 需要移除代码 */
+    @Deprecated
+    public static final String API_BUGHD = "http://api.bughd.com";
     private static final String GET_USER_INFO = API_SERVER + "/user";
-    private static final String UPLOAD_MAPPING = API_SERVER + "/full_versions";
-    private static final String CREATE_VERSION = API_SERVER + "/projects";
+    private static final String UPLOAD_MAPPING = API_BUGHD + "/full_versions";
+    private static final String CREATE_VERSION = API_BUGHD + "/projects";
     private static final String GET_UPLOAD_INFO = API_SERVER + "/apps";
     private static final String GET_LATEST_APP_INFO = API_SERVER + "/apps/latest";
     private String mAppPath;

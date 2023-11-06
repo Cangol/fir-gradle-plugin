@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'im.fir.plugin.gradle'
-
-fir {
-    apiToken project.findProperty('publish.fir.key') ?: 'c5cddea79fbc9176a98e216c6f154022'
-    changeLog 'Test Fir Publisher'
-}
+//apply plugin: 'im.fir.plugin.gradle'
+//
+//fir {
+//    apiToken project.findProperty('publish.fir.key') ?: 'c5cddea79fbc9176a98e216c6f154022'
+//    changeLog 'Test Fir Publisher'
+//}
 android {
     compileSdk 33
     defaultConfig {

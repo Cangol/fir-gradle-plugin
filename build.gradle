@@ -1,26 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        jcenter()
+        google()
         mavenCentral()
         mavenLocal()
-        google()
     }
+    ext.android_gradle = '7.3.1'
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath 'mobi.cangol.mobile:fir-gradle-plugin:2.0.4'
+        classpath "com.android.tools.build:gradle:$android_gradle"
+        //classpath "mobi.cangol.mobile:fir-gradle-plugin:$POM_VERSION"
     }
 }
 allprojects {
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        jcenter()
+        google()
         mavenCentral()
         mavenLocal()
-        google()
     }
     tasks.withType(JavaCompile) {
         sourceCompatibility = JavaVersion.VERSION_1_8

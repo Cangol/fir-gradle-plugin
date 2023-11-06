@@ -1,5 +1,22 @@
-apply plugin: 'groovy'
+plugins {
+    id 'java-gradle-plugin'
+    id 'groovy'
+    id 'maven-publish'
+    id 'com.gradle.plugin-publish' version '0.18.0'
+}
+
 apply from: '../maven_push.gradle'
+
+gradlePlugin {
+    plugins {
+        firPlugin {
+            id = 'im.fir.plugin.gradle'
+            displayName = POM_NAME
+            description = POM_DESCRIPTION
+            implementationClass = 'im.fir.gradle.FirPublisherPlugin'
+        }
+    }
+}
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
@@ -9,19 +26,6 @@ dependencies {
     implementation 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
     implementation 'commons-lang:commons-lang:2.6'
     implementation 'commons-io:commons-io:2.6'
-    compileOnly 'com.android.tools.build:gradle:3.1.4'
-}
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = 'sources'
+    compileOnly "com.android.tools.build:gradle:$android_gradle"
 }
 
-task groovydocJar(type: Jar, dependsOn: groovydoc) {
-    classifier 'groovydoc'
-    from groovydoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives groovydocJar
-}

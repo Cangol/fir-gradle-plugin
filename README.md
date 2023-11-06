@@ -6,7 +6,9 @@ Usage
 -----------
         buildscript {
             repositories {
-                mavenCentral()
+                maven {
+                    url "https://plugins.gradle.org/m2/"
+                }
             }
             dependencies {
                 classpath 'com.android.tools.build:gradle:7.3.0'
